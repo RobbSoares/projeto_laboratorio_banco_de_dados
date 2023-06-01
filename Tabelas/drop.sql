@@ -1,0 +1,39 @@
+
+drop table delegacias_circunscricoes;
+drop table delegacias_departamentos;
+drop table delegacias_especializadas_homicidios;
+drop table delegacias_especializadas_municipios;
+drop table delegacias_homicidios;
+drop table delegacias_ocorrencias;
+drop table divisoes_delegacias_especializadas;
+drop table divisoes_especializadas;
+drop table locais_homicidios;
+drop table unidades_delegacias;
+drop table tipos_locais;
+drop table delegacias_especializadas;
+drop table departamentos;
+drop table municipios;
+drop table tipo_local;
+drop table unidades_administrativas;
+drop table ocorrencias;
+drop table delegacias;
+drop table circunscricoes;
+drop table locais;
+drop table tipo_local;
+drop table homicidios;
+drop table pessoas;
+
+drop sequence sq_cir;
+drop sequence sq_del;
+drop sequence sq_dep;
+drop sequence sq_div;
+drop sequence sq_mun;
+drop sequence sq_tip;
+drop sequence sq_una;
+drop sequence sq_des;
+drop sequence sq_elb;
+drop sequence sq_hom;
+drop sequence sq_loc;
+drop sequence sq_ocr;
+drop sequence sq_pes;
+

@@ -1,0 +1,15 @@
+INSERT INTO divisoes_especializadas values (1, 'DECAP'); 
+INSERT INTO divisoes_especializadas values (2, 'DHPP'); 
+INSERT INTO divisoes_especializadas values (3, 'DEINTER 1 - SAO JOSE DOS CAMPOS'); 
+INSERT INTO divisoes_especializadas values (4, 'DEINTER 10 - ARAÇATUBA'); 
+INSERT INTO divisoes_especializadas values (5, 'DEINTER 2 - CAMPINAS'); 
+INSERT INTO divisoes_especializadas values (6, 'DEINTER 3 - RIBEIRAO PRETO'); 
+INSERT INTO divisoes_especializadas values (7, 'DEINTER 4 - BAURU'); 
+INSERT INTO divisoes_especializadas values (8, 'DEINTER 5 - SAO JOSE DO RIO PRETO'); 
+INSERT INTO divisoes_especializadas values (9, 'DEINTER 6 - SANTOS'); 
+INSERT INTO divisoes_especializadas values (10, 'DEINTER 7 - SOROCABA'); 
+INSERT INTO divisoes_especializadas values (11, 'DEINTER 8 - PRESIDENTE PRUDENTE'); 
+INSERT INTO divisoes_especializadas values (12, 'DEINTER 9 - PIRACICABA'); 
+INSERT INTO divisoes_especializadas values (13, 'DEMACRO'); 
+INSERT INTO divisoes_especializadas values (14, 'DIRD - DEPTO IDENT.REG.DIV'); 
+INSERT INTO divisoes_especializadas values (15, 'DEIC'); 
