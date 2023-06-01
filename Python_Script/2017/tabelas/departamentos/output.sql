@@ -1,0 +1,12 @@
+INSERT INTO departamentos values (1, 'DECAP'); 
+INSERT INTO departamentos values (2, 'DEINTER 1'); 
+INSERT INTO departamentos values (3, 'DEINTER 10'); 
+INSERT INTO departamentos values (4, 'DEINTER 2'); 
+INSERT INTO departamentos values (5, 'DEINTER 3'); 
+INSERT INTO departamentos values (6, 'DEINTER 4'); 
+INSERT INTO departamentos values (7, 'DEINTER 5'); 
+INSERT INTO departamentos values (8, 'DEINTER 6'); 
+INSERT INTO departamentos values (9, 'DEINTER 7'); 
+INSERT INTO departamentos values (10, 'DEINTER 8'); 
+INSERT INTO departamentos values (11, 'DEINTER 9'); 
+INSERT INTO departamentos values (12, 'DEMACRO'); 
