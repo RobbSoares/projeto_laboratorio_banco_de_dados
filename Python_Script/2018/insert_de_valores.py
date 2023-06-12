@@ -46,7 +46,7 @@ def create_homicidios(atualizacao = False, nome_json = '2018'):
                           'NUMERO_LOGRADOURO', 'LATITUDE',
                           'LONGITUDE', 'DP_ELABORACAO', 'ID_DELEGACIA']
     # colunas_homicidios = ['HD', 'Nº DE VÍT HD', 'MÊS ESTATISTICA', 'ANO ESTATISTICA', 'DATA_FATO', 'HORA_FATO',
-    #                        'NATUREZA_APURADA']
+    #                         'NATUREZA_APURADA']
 
     armazena_valores.armazena_valores(homicidios, colunas_homicidios, 'homicidios', atualizacao, False, nome_json)
 

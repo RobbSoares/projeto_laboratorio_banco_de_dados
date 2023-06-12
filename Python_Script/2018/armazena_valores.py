@@ -2,7 +2,7 @@ import pandas as pd
 
 def armazena_valores(dicionario, colunas, tabela, atualizacao = False, is_duplicado = True, nome_json = '2018'):
     itera(dicionario, colunas, nome_json)
-    armazena_dados_sem_repeticao(dicionario, tabela, atualizacao, is_duplicado)
+    armazena_dados_sem_repeticao(dicionario, tabela, atualizacao, is_duplicado, nome_json)
 
 def itera(dic, col, nome_json):
     with open(f'{nome_json}.json', encoding='utf-8') as fh:
@@ -16,8 +16,8 @@ def itera(dic, col, nome_json):
         dic[chave] = valores
 
 
-def armazena_dados_sem_repeticao(dicionario, path, atualizacao, is_duplicado=True):
-    if (atualizacao):
+def armazena_dados_sem_repeticao(dicionario, path, atualizacao, is_duplicado=True, nome_json = '2018'):
+    if (nome_json == '2018'):
         output = open(f'tabelas/{path}/atualizacao.sql', "w",  encoding="utf-8")
     else:
         output = open(f'tabelas/{path}/output.sql', "w",  encoding="utf-8")
@@ -43,17 +43,23 @@ def armazena_dados_sem_repeticao(dicionario, path, atualizacao, is_duplicado=Tru
     results = []
     tb_id = 1
     
-    if path == 'homicidios' or path == 'pessoas':
+    if (path == 'homicidios' or path == 'pessoas') and nome_json == '2018':
         tb_id = 3505
+
+    if path == 'delegacias' and nome_json == '2018':
+        tb_id = 698
     
-    if path == 'locais':
+    if path == 'locais' and nome_json == '2018':
         tb_id = 2547  
     
-    if path == 'tipo_local':
+    if path == 'tipo_local' and nome_json == '2018':
         tb_id = 26
     
-    if path == 'ocorrencias':
+    if path == 'ocorrencias' and nome_json == '2018':
         tb_id = 3280
+
+
+    result = [];
     
     for chave, valor in novo_dicionario.items():
         valores_str = []
@@ -67,11 +73,12 @@ def armazena_dados_sem_repeticao(dicionario, path, atualizacao, is_duplicado=Tru
         valores_str = ", ".join(valores_str)
         if path == 'homicidios':
             
-            result = f"INSERT INTO {path} values ({tb_id}, {valores_str}, {tb_id}); \n"
+            result.append(f"INSERT INTO {path} values ({tb_id}, {valores_str}, {tb_id}); \n")
         else:
-            result = f"INSERT INTO {path} values ({tb_id}, {valores_str}); \n"
-        output.write(result)
-
+            result.append(f"INSERT INTO {path} values ({tb_id}, {valores_str}); \n")
         tb_id = tb_id + 1
+
+    for line in result:
+        output.write(line)
 
     return novo_dicionario

@@ -53,7 +53,7 @@ def relacionamento_delegacias_especializadas_homicidios():
     homicidios = []
     delegacia_especializadas_especializadas = []
 
-    with open('2018.json', encoding='utf-8') as fh:
+    with open('output_2018.json', encoding='utf-8') as fh:
         df = pd.read_json(fh)
 
     with open('tabelas/homicidios/output.sql', encoding='utf-8') as fh:
@@ -63,7 +63,7 @@ def relacionamento_delegacias_especializadas_homicidios():
     with open('tabelas/delegacias_especializadas/output.sql', encoding='utf-8') as fh:
         for line in fh:
             delegacia_especializadas_especializadas.append(line)
-
+    
     lines_already_seen = []
     homicidios_df = df[['DATA_FATO', 'HORA_FATO', 'MÊS ESTATISTICA', 'DP_ELABORACAO', 'LATITUDE',
                         'LONGITUDE']].drop_duplicates().values.tolist()
@@ -71,6 +71,7 @@ def relacionamento_delegacias_especializadas_homicidios():
     for homicidio in homicidios_df:
         lines_already_seen.append((homicidio[0], homicidio[1], homicidio[2], homicidio[3], homicidio[4], homicidio[5]))
 
+    print(lines_already_seen.__len__())
     homicidios_segmentadas = []
     for homicidio in homicidios:
         homicidios_segmentadas.append(homicidio.split("(")[1].split(")")[0].split(", "))
