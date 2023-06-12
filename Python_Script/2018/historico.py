@@ -32,29 +32,34 @@ def migracao_de_dados(table, primary_key):
     # Dados que não possuem na tabela nova
     different_elements_in_old = old_set.difference(new_set)
     
-    to_delete = []   
-    for element in different_elements_in_old:
-        for line in treated_old_data:
-           if (element == line[1]):
-                to_delete.append(f"DELETE FROM {table} WHERE {primary_key} = {line[0]}; \n")    
+    # to_delete = []   
+    # for element in different_elements_in_old:
+    #     for line in treated_old_data:
+    #        if (element == line[1]):
+    #             to_delete.append(f"DELETE FROM {table} WHERE {primary_key} = {line[0]}; \n")    
                  
+                 
+    id_new = old_data.__len__()    
+          
     data = []
     for element in different_elements_in_new:
         for line in treated_new_data:
             if (table != 'delegacias_especializadas'):
                 if (element == line[1]):
-                    data.append(f"INSERT INTO {table} values ({line[0]}, {element}); \n")
+                    id_new = id_new + 1
+                    data.append(f"INSERT INTO {table} values ({id_new}, {element}); \n")
             else:
                 if (element == line[1]):
-                    data.append(f"INSERT INTO {table} values ({line[0]}, {element}, {line[2]}); \n")
+                    id_new = id_new + 1
+                    data.append(f"INSERT INTO {table} values ({id_new}, {element}, {line[2]}); \n")
 
     output = open(f'historico/{table}/insert.sql', 'w',  encoding="utf-8")  
     for datum in data:
         output.write(datum)
 
-    output = open(f'historico/{table}/delete.sql', 'w', encoding="utf-8")  
-    for item in to_delete:
-        output.write(item)
+    # output = open(f'historico/{table}/delete.sql', 'w', encoding="utf-8")  
+    # for item in to_delete:
+    #     output.write(item)
         
     print(f'Número de elementos em comum: {common_elements.__len__()}')
     print(f'Número de inexistentes na tabela nova que estavam na antiga: {different_elements_in_new.__len__()}')

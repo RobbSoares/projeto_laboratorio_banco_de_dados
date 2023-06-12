@@ -1,6 +1,6 @@
 import pandas as pd
 
-def armazena_valores(dicionario, colunas, tabela, atualizacao = False, is_duplicado = True, nome_json = '2017'):
+def armazena_valores(dicionario, colunas, tabela, atualizacao = False, is_duplicado = True, nome_json = '2018'):
     itera(dicionario, colunas, nome_json)
     armazena_dados_sem_repeticao(dicionario, tabela, atualizacao, is_duplicado)
 
@@ -30,6 +30,7 @@ def armazena_dados_sem_repeticao(dicionario, path, atualizacao, is_duplicado=Tru
     # Criar um novo dicion?rio com os valores ?nicos
     novo_dicionario = {}
     if not is_duplicado:
+        print('entrou')
         novo_dicionario = dicionario
     else:
         for chave, valor in dicionario.items():
@@ -41,6 +42,19 @@ def armazena_dados_sem_repeticao(dicionario, path, atualizacao, is_duplicado=Tru
     # Criar as strings de insert dinamicamente
     results = []
     tb_id = 1
+    
+    if path == 'homicidios' or path == 'pessoas':
+        tb_id = 3505
+    
+    if path == 'locais':
+        tb_id = 2547  
+    
+    if path == 'tipo_local':
+        tb_id = 26
+    
+    if path == 'ocorrencias':
+        tb_id = 3280
+    
     for chave, valor in novo_dicionario.items():
         valores_str = []
         for v in valor:
@@ -51,7 +65,11 @@ def armazena_dados_sem_repeticao(dicionario, path, atualizacao, is_duplicado=Tru
                 valores_str.append(str(v))
 
         valores_str = ", ".join(valores_str)
-        result = f"INSERT INTO {path} values ({tb_id}, {valores_str}); \n"
+        if path == 'homicidios':
+            
+            result = f"INSERT INTO {path} values ({tb_id}, {valores_str}, {tb_id}); \n"
+        else:
+            result = f"INSERT INTO {path} values ({tb_id}, {valores_str}); \n"
         output.write(result)
 
         tb_id = tb_id + 1
