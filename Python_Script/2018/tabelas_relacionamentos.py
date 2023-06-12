@@ -7,14 +7,14 @@ def gera_tabela_relacionamento_delegacias_circunscricoes():
     delegacias = []
     circunscricoes = []
 
-    with open('outputjson.json', encoding='utf-8') as fh:
+    with open('output_2018.json', encoding='utf-8') as fh:
         df = pd.read_json(fh)
 
-    with open('tabelas/delegacias/output.sql') as fh:
+    with open('tabelas/atualizadas/delegacias/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             delegacias.append(line)
 
-    with open('tabelas/circunscricoes/output.sql') as fh:
+    with open('tabelas/atualizadas/circunscricoes/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             circunscricoes.append(line)
 
@@ -45,7 +45,7 @@ def gera_tabela_relacionamento_delegacias_circunscricoes():
                         seen.append((delegacia[1], circunscricao[1]))
 
     print(len(inserts))
-    output = open('tabelas/delegacias_circunscricoes/output.sql', 'w',  encoding="utf-8")
+    output = open('tabelas/relacionamento/delegacias_circunscricoes/output.sql', 'w',  encoding="utf-8")
     for e in inserts:
         output.write(e)
 
@@ -54,14 +54,14 @@ def gera_tabela_relacionamento_delegacias_departamentos():
     departamentos = []
     delegacias = []
 
-    with open('outputjson.json', encoding='utf-8') as fh:
+    with open('output_2018.json', encoding='utf-8') as fh:
         df = pd.read_json(fh)
 
-    with open('tabelas/departamentos/output.sql') as fh:
+    with open('tabelas/atualizadas/departamentos/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             departamentos.append(line)
 
-    with open('tabelas/delegacias/output.sql') as fh:
+    with open('tabelas/atualizadas/delegacias/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             delegacias.append(line)
 
@@ -91,7 +91,7 @@ def gera_tabela_relacionamento_delegacias_departamentos():
                     seen.append((departamento[1], delegacia[1]))
 
     print(len(inserts))
-    output = open('tabelas/delegacias_departamentos/output.sql', 'w',  encoding="utf-8")
+    output = open('tabelas/relacionamento/delegacias_departamentos/output.sql', 'w',  encoding="utf-8")
     for e in inserts:
         output.write(e)
 
@@ -100,14 +100,14 @@ def gera_tabela_relacionamento_delegacias_especializadas_homicidios():
     homicidios = []
     delegacia_especializadas_especializadas = []
 
-    with open('outputjson.json', encoding='utf-8') as fh:
+    with open('output_2018.json', encoding='utf-8') as fh:
         df = pd.read_json(fh)
 
-    with open('tabelas/homicidios/output.sql') as fh:
+    with open('tabelas/atualizadas/homicidios/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             homicidios.append(line)
 
-    with open('tabelas/delegacias_especializadas/output.sql') as fh:
+    with open('tabelas/atualizadas/delegacias_especializadas/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             delegacia_especializadas_especializadas.append(line)
 
@@ -141,63 +141,24 @@ def gera_tabela_relacionamento_delegacias_especializadas_homicidios():
                             f"insert into delegacias_especializadas_homicidios values ({delegacia_especializada[0]}, {homicidio[0]}); \n")
 
     print(len(inserts))
-    output = open('tabelas/delegacias_especializadas_homicidios/output.sql', 'w',  encoding="utf-8")
+    output = open('tabelas/relacionamento/delegacias_especializadas_homicidios/output.sql', 'w',  encoding="utf-8")
     for e in inserts:
         output.write(e)
 
-
-def gera_tabela_relacionamento_delegacias_especializadas_municipios():
-    delegacia_especializadas = []
-    municipios = []
-
-    with open('outputjson.json', encoding='utf-8') as fh:
-        df = pd.read_json(fh)
-
-    with open('tabelas/delegacias_especializadas/output.sql') as fh:
-        for line in fh:
-            delegacia_especializadas.append(line)
-
-    with open('tabelas/municipios/output.sql') as fh:
-        for line in fh:
-            municipios.append(line)
-
-    lines_already_seen = []
-
-    delegacia_especializadas_especializadas_df = df[
-        ['DP_ELABORACAO', 'MUNICIPIO_ELABORACAO']].drop_duplicates().values.tolist()
-
-    for delegacia_especializada in delegacia_especializadas_especializadas_df:
-        lines_already_seen.append((delegacia_especializada[0], delegacia_especializada[1]))
-
-    delegacia_especializadas_segmentadas = []
-    for delegacia_especializada in delegacia_especializadas:
-        delegacia_especializadas_segmentadas.append(delegacia_especializada.split("(")[1].split(")")[0].split(", "))
-
-    municipios_segmentadas = []
-    for municipio in municipios:
-        municipios_segmentadas.append(municipio.split("(")[1].split(")")[0].split(", "))
-
-    output = open('tabelas/delegacias_especializadas_municipios/output.sql', 'w',  encoding="utf-8")
-    for line_df in lines_already_seen:
-        for delegacia_especializada in delegacia_especializadas_segmentadas:
-            for municipio in municipios_segmentadas:
-                if delegacia_especializada[1].strip("'") == line_df[0] and municipio[1].strip("'") == line_df[1]:
-                    output.write(
-                        f"insert into delegacias_especializadas_municipios values ({delegacia_especializada[0]}, {municipio[0]}); \n")
 
 
 def gera_tabela_relacionamento_delegacias_homicidios():
     homicidios = []
     delegacias = []
 
-    with open('outputjson.json', encoding='utf-8') as fh:
+    with open('output_2018.json', encoding='utf-8') as fh:
         df = pd.read_json(fh)
 
-    with open('tabelas/homicidios/output.sql') as fh:
+    with open('tabelas/atualizadas/homicidios/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             homicidios.append(line)
 
-    with open('tabelas/delegacias/output.sql') as fh:
+    with open('tabelas/atualizadas/delegacias/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             delegacias.append(line)
 
@@ -227,7 +188,7 @@ def gera_tabela_relacionamento_delegacias_homicidios():
                             f"insert into delegacias_homicidios values ({delegacia[0]}, {homicidio[0]}); \n")
 
     print(len(inserts))
-    output = open('tabelas/delegacias_homicidios/output.sql', 'w',  encoding="utf-8")
+    output = open('tabelas/relacionamento/delegacias_homicidios/output.sql', 'w',  encoding="utf-8")
     for e in inserts:
         output.write(e)
 
@@ -236,14 +197,14 @@ def gera_tabela_relacionamento_delegacias_ocorrencias():
     ocorrencias = []
     delegacias = []
 
-    with open('outputjson.json', encoding='utf-8') as fh:
+    with open('output_2018.json', encoding='utf-8') as fh:
         df = pd.read_json(fh)
 
-    with open('tabelas/ocorrencias/output.sql') as fh:
+    with open('tabelas/atualizadas/ocorrencias/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             ocorrencias.append(line)
 
-    with open('tabelas/delegacias/output.sql') as fh:
+    with open('tabelas/atualizadas/delegacias/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             delegacias.append(line)
 
@@ -272,7 +233,7 @@ def gera_tabela_relacionamento_delegacias_ocorrencias():
                             f"insert into delegacias_ocorrencias values ({delegacia[0]}, {ocorrencia[0]}); \n")
 
     print(len(inserts))
-    output = open('tabelas/delegacias_ocorrencias/output.sql', 'w',  encoding="utf-8")
+    output = open('tabelas/relacionamento/delegacias_ocorrencias/output.sql', 'w',  encoding="utf-8")
     for e in inserts:
         output.write(e)
 
@@ -281,14 +242,14 @@ def gera_tabela_relacionamento_divisoes_delegacias_especializadas():
     divisoes_especializadas = []
     delegacia_especializadas_especializadas = []
 
-    with open('outputjson.json', encoding='utf-8') as fh:
+    with open('output_2018.json', encoding='utf-8') as fh:
         df = pd.read_json(fh)
 
-    with open('tabelas/divisoes_especializadas/output.sql') as fh:
+    with open('tabelas/atualizadas/divisoes_especializadas/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             divisoes_especializadas.append(line)
 
-    with open('tabelas/delegacias_especializadas/output.sql') as fh:
+    with open('tabelas/atualizadas/delegacias_especializadas/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             delegacia_especializadas_especializadas.append(line)
 
@@ -320,7 +281,7 @@ def gera_tabela_relacionamento_divisoes_delegacias_especializadas():
                     seen.append((divisao_especializada[1], delegacia_especializada[1]))
 
     print(len(inserts))
-    output = open('tabelas/divisoes_delegacias_especializadas/output.sql', 'w',  encoding="utf-8")
+    output = open('tabelas/relacionamento/divisoes_delegacias_especializadas/output.sql', 'w',  encoding="utf-8")
     for e in inserts:
         output.write(e)
 
@@ -329,14 +290,14 @@ def gera_tabela_relacionamento_locais_homicidios():
     homicidios = []
     locais = []
 
-    with open('outputjson.json', encoding='utf-8') as fh:
+    with open('output_2018.json', encoding='utf-8') as fh:
         df = pd.read_json(fh)
 
-    with open('tabelas/homicidios/output.sql') as fh:
+    with open('tabelas/atualizadas/homicidios/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             homicidios.append(line)
 
-    with open('tabelas/locais/output.sql') as fh:
+    with open('tabelas/atualizadas/locais/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             locais.append(line)
 
@@ -375,52 +336,7 @@ def gera_tabela_relacionamento_locais_homicidios():
                             f"insert into locais_homicidios values ({homicidio[0]}, {local[0]}); \n")
 
     print(len(inserts))
-    output = open('tabelas/locais_homicidios/output.sql', 'w',  encoding="utf-8")
-    for e in inserts:
-        output.write(e)
-
-
-def gera_tabela_relacionamento_unidades_delegacias():
-    unidades_administrativas = []
-    delegacias = []
-
-    with open('outputjson.json', encoding='utf-8') as fh:
-        df = pd.read_json(fh)
-
-    with open('tabelas/unidades_administrativas/output.sql') as fh:
-        for line in fh:
-            unidades_administrativas.append(line)
-
-    with open('tabelas/delegacias/output.sql') as fh:
-        for line in fh:
-            delegacias.append(line)
-
-    lines_already_seen = []
-
-    unidades_administrativas_df = df[['SECCIONAL_CIRCUNSCRICAO', 'DP_CIRCUNSCRICAO ']].drop_duplicates().values.tolist()
-
-    for unidade_administrativa in unidades_administrativas_df:
-        lines_already_seen.append((unidade_administrativa[0], unidade_administrativa[1]))
-
-    unidades_administrativas_segmentadas = []
-    for unidade_administrativa in unidades_administrativas:
-        unidades_administrativas_segmentadas.append(unidade_administrativa.split("(")[1].split(")")[0].split(", "))
-
-    delegacias_segmentadas = []
-    for delegacia in delegacias:
-        delegacias_segmentadas.append(delegacia.split("(")[1].split(")")[0].split(", "))
-
-    inserts = []
-    for unidade_administrativa in unidades_administrativas_segmentadas:
-        for line_df in lines_already_seen:
-            if unidade_administrativa[1].strip("'") == line_df[0]:
-                for delegacia in delegacias_segmentadas:
-                    if delegacia[1].strip("'") == line_df[1]:
-                        inserts.append(
-                            f"insert into unidades_delegacias values ({unidade_administrativa[0]}, {delegacia[0]}); \n")
-
-    print(len(inserts))
-    output = open('tabelas/unidades_delegacias/output.sql', 'w',  encoding="utf-8")
+    output = open('tabelas/relacionamento/locais_homicidios/output.sql', 'w',  encoding="utf-8")
     for e in inserts:
         output.write(e)
 
@@ -429,14 +345,14 @@ def gera_tabela_relacionamento_locais_tipos():
     tipos_locais = []
     locais = []
 
-    with open('outputjson.json', encoding='utf-8') as fh:
+    with open('output_2018.json', encoding='utf-8') as fh:
         df = pd.read_json(fh)
 
-    with open('tabelas/tipo_local/output.sql') as fh:
+    with open('tabelas/atualizadas/tipo_local/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             tipos_locais.append(line)
 
-    with open('tabelas/locais/output.sql') as fh:
+    with open('tabelas/atualizadas/locais/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
             locais.append(line)
 
@@ -466,6 +382,6 @@ def gera_tabela_relacionamento_locais_tipos():
                             f"insert into tipos_locais values ({tipo_local[0]}, {local[0]}); \n")
 
     print(len(inserts))
-    output = open('tabelas/tipos_locais/output.sql', 'w',  encoding="utf-8")
+    output = open('tabelas/relacionamento/tipos_locais/output.sql', 'w',  encoding="utf-8")
     for e in inserts:
         output.write(e)

@@ -18,9 +18,9 @@ def itera(dic, col, nome_json):
 
 def armazena_dados_sem_repeticao(dicionario, path, atualizacao, is_duplicado=True, nome_json = '2018'):
     if (nome_json == '2018'):
-        output = open(f'tabelas/{path}/atualizacao.sql', "w",  encoding="utf-8")
+        output = open(f'tabelas/atualizadas/{path}/atualizacao.sql', "w",  encoding="utf-8")
     else:
-        output = open(f'tabelas/{path}/output.sql', "w",  encoding="utf-8")
+        output = open(f'tabelas/atualizadas/{path}/output.sql', "w",  encoding="utf-8")
 
     valores_unicos = set()
     for valor in dicionario.values():

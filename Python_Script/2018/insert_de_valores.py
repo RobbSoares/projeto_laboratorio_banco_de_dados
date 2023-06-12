@@ -78,14 +78,6 @@ def create_circunscricoes(atualizacao = False, nome_json = '2017'):
 
     armazena_valores.armazena_valores(circunscricoes, colunas_circunscricoes, 'circunscricoes', atualizacao, True, nome_json)
 
-
-def create_locais(atualizacao = False):
-    locais = {}
-    colunas_locais = ['LOGRADOURO', 'NUMERO_LOGRADOURO', 'LATITUDE', 'LONGITUDE']
-
-    armazena_valores.armazena_valores(locais, colunas_locais, 'locais', atualizacao)
-
-
 def create_divisoes_especializadas(atualizacao = False, nome_json = '2017'):
     divisoes_especializadas = {}
     colunas_divisoes_especializadas = ['DEP_ELABORACAO']
@@ -100,17 +92,3 @@ def create_delegacias_especializadas(atualizacao = False, nome_json = '2018'):
 
     armazena_valores.armazena_valores(delegacias_especializadas, colunas_delegacias_especializadas,
                                       'delegacias_especializadas', atualizacao, True, nome_json)
-
-
-def create_municipios(atualizacao = False):
-    municipios = {}
-    colunas_municipios = ['MUNICIPIO_ELABORACAO']
-
-    armazena_valores.armazena_valores(municipios, colunas_municipios, 'municipios', atualizacao)
-
-
-def create_ocorrencias(atualizacao = False):
-    ocorrencias = {}
-    colunas_ocorrencias = ['NUM_BO', 'DATAHORA_REGISTRO_BO', 'ANO_BO']
-
-    armazena_valores.armazena_valores(ocorrencias, colunas_ocorrencias, 'ocorrencias', atualizacao)
