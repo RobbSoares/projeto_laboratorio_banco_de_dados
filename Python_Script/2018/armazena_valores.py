@@ -52,9 +52,6 @@ def armazena_dados_sem_repeticao(dicionario, path, atualizacao, is_duplicado=Tru
     if path == 'locais' and nome_json == '2018':
         tb_id = 2547  
     
-    if path == 'tipo_local' and nome_json == '2018':
-        tb_id = 26
-    
     if path == 'ocorrencias' and nome_json == '2018':
         tb_id = 3280
 

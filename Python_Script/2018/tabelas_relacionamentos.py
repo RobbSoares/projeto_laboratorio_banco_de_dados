@@ -385,3 +385,48 @@ def gera_tabela_relacionamento_locais_tipos():
     output = open('tabelas/relacionamento/tipos_locais/output.sql', 'w',  encoding="utf-8")
     for e in inserts:
         output.write(e)
+
+
+def gera_tabela_relacionamento_unidades_delegacias():
+    unidades_administrativas = []
+    delegacias = []
+
+    with open('output_2018.json', encoding='utf-8') as fh:
+        df = pd.read_json(fh)
+
+    with open('tabelas/atualizadas/unidades_administrativas/atualizacao.sql') as fh:
+        for line in fh:
+            unidades_administrativas.append(line)
+
+    with open('tabelas/atualizadas/delegacias/atualizacao.sql') as fh:
+        for line in fh:
+            delegacias.append(line)
+
+    lines_already_seen = []
+
+    unidades_administrativas_df = df[['SECCIONAL_CIRCUNSCRICAO', 'DP_CIRCUNSCRICAO ']].drop_duplicates().values.tolist()
+
+    for unidade_administrativa in unidades_administrativas_df:
+        lines_already_seen.append((unidade_administrativa[0], unidade_administrativa[1]))
+
+    unidades_administrativas_segmentadas = []
+    for unidade_administrativa in unidades_administrativas:
+        unidades_administrativas_segmentadas.append(unidade_administrativa.split("(")[1].split(")")[0].split(", "))
+
+    delegacias_segmentadas = []
+    for delegacia in delegacias:
+        delegacias_segmentadas.append(delegacia.split("(")[1].split(")")[0].split(", "))
+
+    inserts = []
+    for unidade_administrativa in unidades_administrativas_segmentadas:
+        for line_df in lines_already_seen:
+            if unidade_administrativa[1].strip("'") == line_df[0]:
+                for delegacia in delegacias_segmentadas:
+                    if delegacia[1].strip("'") == line_df[1]:
+                        inserts.append(
+                            f"insert into unidades_delegacias values ({unidade_administrativa[0]}, {delegacia[0]}); \n")
+
+    print(len(inserts))
+    output = open('tabelas/relacionamento/unidades_delegacias/output.sql', 'w',  encoding="utf-8")
+    for e in inserts:
+        output.write(e)
