@@ -189,25 +189,25 @@ begin
 end;
 /
 
-CREATE TABLE H_DIVISOES_ESPECIALIZADAS (
-    hdiv_id                INTEGER,
-    hdiv_divisao      VARCHAR2(60),
-    hdiv_datahora DATE,
+-- CREATE TABLE H_DIVISOES_ESPECIALIZADAS (
+--     hdiv_id                INTEGER,
+--     hdiv_divisao      VARCHAR2(60),
+--     hdiv_datahora DATE,
 
-    CONSTRAINT pk_hdiv PRIMARY KEY ( hdiv_id, hdiv_datahora )
-);
+--     CONSTRAINT pk_hdiv PRIMARY KEY ( hdiv_id, hdiv_datahora )
+-- );
 
-create trigger tg_hdiv 
-before update or delete on DIVISOES_ESPECIALIZADAS
-for each row
-begin
-	insert into H_DIVISOES_ESPECIALIZADAS values (
-        :old.div_id,
-        :old.div_divisao,
-        sysdate        
-        );
-end;
-/
+-- create trigger tg_hdiv 
+-- before update or delete on DIVISOES_ESPECIALIZADAS
+-- for each row
+-- begin
+-- 	insert into H_DIVISOES_ESPECIALIZADAS values (
+--         :old.div_id,
+--         :old.div_divisao,
+--         sysdate        
+--         );
+-- end;
+-- /
 
 CREATE TABLE H_DELEGACIAS_ESPECIALIZADAS (
     hdes_id                INTEGER,
@@ -231,25 +231,25 @@ begin
 end;
 /
 
-CREATE TABLE H_MUNICIPIOS (
-    hmun_id                INTEGER,
-    hmun_municipio      VARCHAR2(60),
-    hmun_datahora DATE,
+-- CREATE TABLE H_MUNICIPIOS (
+--     hmun_id                INTEGER,
+--     hmun_municipio      VARCHAR2(60),
+--     hmun_datahora DATE,
 
-    CONSTRAINT pk_hmun PRIMARY KEY ( hmun_id, hmun_datahora )
-);
+--     CONSTRAINT pk_hmun PRIMARY KEY ( hmun_id, hmun_datahora )
+-- );
 
-create trigger tg_hmun 
-before update or delete on MUNICIPIOS
-for each row
-begin
-	insert into H_MUNICIPIOS values (
-        :old.mun_id,
-        :old.mun_municipio,
-        sysdate        
-        );
-end;
-/
+-- create trigger tg_hmun 
+-- before update or delete on MUNICIPIOS
+-- for each row
+-- begin
+-- 	insert into H_MUNICIPIOS values (
+--         :old.mun_id,
+--         :old.mun_municipio,
+--         sysdate        
+--         );
+-- end;
+-- /
 
 CREATE TABLE H_OCORRENCIAS (
     hocr_id                   INTEGER,
@@ -277,26 +277,26 @@ end;
 
 -- Tabelas de relacionamento
 
-CREATE TABLE H_DELEGACIAS_HOMICIDIOS (
-    hdho_del_id INTEGER,
-    hdho_hom_id INTEGER,
-    hdho_datahora DATE,
+-- CREATE TABLE H_DELEGACIAS_HOMICIDIOS (
+--     hdho_del_id INTEGER,
+--     hdho_hom_id INTEGER,
+--     hdho_datahora DATE,
 
-    CONSTRAINT hdho_pk PRIMARY KEY ( hdho_del_id, hdho_hom_id, hdho_datahora )
-);
+--     CONSTRAINT hdho_pk PRIMARY KEY ( hdho_del_id, hdho_hom_id, hdho_datahora )
+-- );
 
 
-create trigger tg_hdho
-before update or delete on DELEGACIAS_HOMICIDIOS
-for each row
-begin
-	insert into H_DELEGACIAS_HOMICIDIOS values (
-        :old.dho_del_id,
-        :old.dho_hom_id,
-        sysdate        
-        );
-end;
-/
+-- create trigger tg_hdho
+-- before update or delete on DELEGACIAS_HOMICIDIOS
+-- for each row
+-- begin
+-- 	insert into H_DELEGACIAS_HOMICIDIOS values (
+--         :old.dho_del_id,
+--         :old.dho_hom_id,
+--         sysdate        
+--         );
+-- end;
+-- /
 
 CREATE TABLE H_DELEGACIAS_CIRCUNSCRICOES (
     hdec_del_id INTEGER,
