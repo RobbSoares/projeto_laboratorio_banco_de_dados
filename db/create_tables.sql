@@ -1,17 +1,3 @@
-CREATE TABLE PESSOAS (
-    pes_id            INTEGER,
-    pes_tipo          VARCHAR2(26),
-    pes_sexo          VARCHAR2(26),
-    pes_idade         INTEGER,
-    pes_dt_nascimento VARCHAR2(30),
-    pes_cor_pele      VARCHAR2(26),
-    pes_profissao     VARCHAR2(128),
-    
-
-    CONSTRAINT pes_pk PRIMARY KEY ( pes_id ),
-    CONSTRAINT ck_pes_tipo CHECK (pes_tipo is not null),
-    CONSTRAINT ck_pes_sexo CHECK (pes_sexo is not null)
-);
 
 
 CREATE TABLE HOMICIDIOS (
@@ -34,6 +20,22 @@ CREATE TABLE HOMICIDIOS (
     CONSTRAINT ck_hom_hora_fato CHECK (hom_hora_fato is not null),
     CONSTRAINT ck_hom_natureza_apurada CHECK (hom_natureza_apurada is not null)
 );
+
+CREATE TABLE PESSOAS (
+    pes_id            INTEGER,
+    pes_tipo          VARCHAR2(26),
+    pes_sexo          VARCHAR2(26),
+    pes_idade         INTEGER,
+    pes_dt_nascimento VARCHAR2(30),
+    pes_cor_pele      VARCHAR2(26),
+    pes_profissao     VARCHAR2(128),
+    
+
+    CONSTRAINT pes_pk PRIMARY KEY ( pes_id ),
+    CONSTRAINT ck_pes_tipo CHECK (pes_tipo is not null),
+    CONSTRAINT ck_pes_sexo CHECK (pes_sexo is not null)
+);
+
 
 CREATE TABLE CIRCUNSCRICOES (
     cir_id           INTEGER,
@@ -169,15 +171,6 @@ CREATE TABLE DELEGACIAS_ESPECIALIZADAS (
     CONSTRAINT pk_des PRIMARY KEY ( des_id ),
     CONSTRAINT ck_des_delegacia_especializada CHECK (des_delegacia_especializada is not null),
     CONSTRAINT ck_des_numero_delegacia CHECK (des_numero_delegacia is not null)
-);
-
-CREATE TABLE DELEGACIAS_ESPECIALIZADAS_MUNICIPIOS (
-    dem_des_id INTEGER,
-    dem_mun_id INTEGER,
-
-    CONSTRAINT pk_mun_des PRIMARY KEY (dem_des_id, dem_mun_id),
-    CONSTRAINT fk_dem_des FOREIGN KEY (dem_des_id) REFERENCES delegacias_especializadas (des_id),
-    CONSTRAINT fk_dem_mun FOREIGN KEY (dem_mun_id) REFERENCES municipios (mun_id)
 );
 
 CREATE TABLE DELEGACIAS_ESPECIALIZADAS_HOMICIDIOS (
