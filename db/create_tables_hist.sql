@@ -221,29 +221,6 @@ begin
 end;
 /
 
-CREATE TABLE H_DELEGACIAS_ESPECIALIZADAS (
-    hdes_id                INTEGER,
-    hdes_delegacia_especializada      VARCHAR2(60),
-    hdes_numero_delegacia    INTEGER,
-    hdes_datahora DATE,
-
-    CONSTRAINT pk_hdes PRIMARY KEY ( hdes_id, hdes_datahora )
-);
-
-create trigger tg_hdes 
-before update or delete on DELEGACIAS_ESPECIALIZADAS
-for each row
-begin
-	insert into H_DELEGACIAS_ESPECIALIZADAS values (
-        :old.des_id,
-        :old.des_delegacia_especializada,
-        :old.des_numero_delegacia,
-        sysdate        
-        );
-end;
-/
-
-
 CREATE TABLE H_OCORRENCIAS (
     hocr_id                   INTEGER,
     hocr_num_bo               VARCHAR2(30),
@@ -291,25 +268,6 @@ begin
 end;
 /
 
-CREATE TABLE H_DELEGACIAS_CIRCUNSCRICOES (
-    hdec_del_id INTEGER,
-    hdec_cir_id INTEGER,
-    hdec_datahora DATE,
-
-    CONSTRAINT hdec_pk PRIMARY KEY ( hdec_del_id, hdec_cir_id, hdec_datahora )
-);
-
-create trigger tg_hdec
-before update or delete on DELEGACIAS_CIRCUNSCRICOES
-for each row
-begin
-	insert into H_DELEGACIAS_CIRCUNSCRICOES values (
-        :old.dec_del_id,
-        :old.dec_cir_id,
-        sysdate        
-        );
-end;
-/
 
 CREATE TABLE H_UNIDADES_DELEGACIAS (
     hund_una_id INTEGER,
@@ -368,27 +326,6 @@ begin
 	insert into H_LOCAIS_HOMICIDIOS values (
         :old.lho_hom_id,
         :old.lho_loc_id,
-        sysdate        
-        );
-end;
-/
-
-CREATE TABLE H_DIVISOES_DELEGACIAS_ESPECIALIZADAS (
-    hdde_des_id INTEGER,
-    hdde_div_id INTEGER,
-    hdde_datahora DATE,
-
-    CONSTRAINT hdde_pk PRIMARY KEY ( hdde_des_id, hdde_div_id, hdde_datahora )
-
-);
-
-create trigger tg_hdde
-before update or delete on DIVISOES_DELEGACIAS_ESPECIALIZADAS
-for each row
-begin
-	insert into H_DIVISOES_DELEGACIAS_ESPECIALIZADAS values (
-        :old.dde_des_id,
-        :old.dde_div_id,
         sysdate        
         );
 end;
