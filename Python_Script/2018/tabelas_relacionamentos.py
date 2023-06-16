@@ -222,7 +222,8 @@ def gera_tabela_relacionamento_delegacias_ocorrencias():
     delegacias_segmentadas = []
     for delegacia in delegacias:
         delegacias_segmentadas.append(delegacia.split("(")[1].split(")")[0].split(", "))
-
+    print(delegacias_segmentadas.__len__())
+    print(ocorrencias_segmentadas.__len__())
     inserts = []
     for ocorrencia in ocorrencias_segmentadas:
         for line_df in lines_already_seen:

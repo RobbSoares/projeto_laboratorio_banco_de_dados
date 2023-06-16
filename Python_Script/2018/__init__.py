@@ -50,8 +50,8 @@ def insercao_valores_relacionamento():
     # tabelas_relacionamentos.gera_tabela_relacionamento_delegacias_especializadas_homicidios()
     # tabelas_relacionamentos.gera_tabela_relacionamento_divisoes_delegacias_especializadas()
     # tabelas_relacionamentos.gera_tabela_relacionamento_delegacias_homicidios()
-    # tabelas_relacionamentos.gera_tabela_relacionamento_delegacias_ocorrencias()
-    tabelas_relacionamentos.gera_tabela_relacionamento_unidades_delegacias()
+    tabelas_relacionamentos.gera_tabela_relacionamento_delegacias_ocorrencias()
+    #tabelas_relacionamentos.gera_tabela_relacionamento_unidades_delegacias()
     
     
 
