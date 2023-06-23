@@ -1,4 +1,18 @@
 
+CREATE TABLE PESSOAS (
+    pes_id            INTEGER,
+    pes_tipo          VARCHAR2(26),
+    pes_sexo          VARCHAR2(26),
+    pes_idade         INTEGER,
+    pes_dt_nascimento VARCHAR2(30),
+    pes_cor_pele      VARCHAR2(26),
+    pes_profissao     VARCHAR2(128),
+    
+
+    CONSTRAINT pes_pk PRIMARY KEY ( pes_id ),
+    CONSTRAINT ck_pes_tipo CHECK (pes_tipo is not null),
+    CONSTRAINT ck_pes_sexo CHECK (pes_sexo is not null)
+);
 
 CREATE TABLE HOMICIDIOS (
     hom_id               INTEGER,
@@ -21,20 +35,6 @@ CREATE TABLE HOMICIDIOS (
     CONSTRAINT ck_hom_natureza_apurada CHECK (hom_natureza_apurada is not null)
 );
 
-CREATE TABLE PESSOAS (
-    pes_id            INTEGER,
-    pes_tipo          VARCHAR2(26),
-    pes_sexo          VARCHAR2(26),
-    pes_idade         INTEGER,
-    pes_dt_nascimento VARCHAR2(30),
-    pes_cor_pele      VARCHAR2(26),
-    pes_profissao     VARCHAR2(128),
-    
-
-    CONSTRAINT pes_pk PRIMARY KEY ( pes_id ),
-    CONSTRAINT ck_pes_tipo CHECK (pes_tipo is not null),
-    CONSTRAINT ck_pes_sexo CHECK (pes_sexo is not null)
-);
 
 
 CREATE TABLE CIRCUNSCRICOES (
@@ -154,15 +154,6 @@ CREATE TABLE DIVISOES_ESPECIALIZADAS (
     CONSTRAINT ck_div_divisao CHECK (div_divisao is not null)
 );
 
-CREATE TABLE DIVISOES_DELEGACIAS_ESPECIALIZADAS (
-    dde_des_id INTEGER,
-    dde_div_id INTEGER,
-
-    CONSTRAINT pk_div_des PRIMARY KEY (dde_des_id, dde_div_id),
-    CONSTRAINT fk_dde_des FOREIGN KEY (dde_des_id) REFERENCES delegacias_especializadas (des_id),
-    CONSTRAINT fk_dde_div FOREIGN KEY (dde_div_id) REFERENCES divisoes_especializadas (div_id)
-);
-
 CREATE TABLE DELEGACIAS_ESPECIALIZADAS (
     des_id                INTEGER,
     des_delegacia_especializada      VARCHAR2(60),
@@ -172,6 +163,17 @@ CREATE TABLE DELEGACIAS_ESPECIALIZADAS (
     CONSTRAINT ck_des_delegacia_especializada CHECK (des_delegacia_especializada is not null),
     CONSTRAINT ck_des_numero_delegacia CHECK (des_numero_delegacia is not null)
 );
+
+CREATE TABLE DIVISOES_DELEGACIAS_ESPECIALIZADAS (
+    dde_des_id INTEGER,
+    dde_div_id INTEGER,
+
+    CONSTRAINT pk_div_des PRIMARY KEY (dde_des_id, dde_div_id),
+    CONSTRAINT fk_dde_des FOREIGN KEY (dde_des_id) REFERENCES delegacias_especializadas (des_id),
+    CONSTRAINT fk_dde_div FOREIGN KEY (dde_div_id) REFERENCES divisoes_especializadas (div_id)
+);
+
+
 
 CREATE TABLE DELEGACIAS_ESPECIALIZADAS_HOMICIDIOS (
     deh_des_id INTEGER,
