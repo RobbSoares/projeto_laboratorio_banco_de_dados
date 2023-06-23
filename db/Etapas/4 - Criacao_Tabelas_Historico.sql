@@ -75,85 +75,85 @@ begin
 end;
 /
 
-CREATE TABLE H_CIRCUNSCRICOES (
-    hcir_id           INTEGER,
-    hcir_municipio    VARCHAR2(60),
-    hcir_datahora DATE,
+-- CREATE TABLE H_CIRCUNSCRICOES (
+--     hcir_id           INTEGER,
+--     hcir_municipio    VARCHAR2(60),
+--     hcir_datahora DATE,
 
-    CONSTRAINT pk_hcir PRIMARY KEY (hcir_id, hcir_datahora)
-);
+--     CONSTRAINT pk_hcir PRIMARY KEY (hcir_id, hcir_datahora)
+-- );
 
-create trigger tg_hcir 
-before update or delete on CIRCUNSCRICOES
-for each row
-begin
-	insert into H_CIRCUNSCRICOES values (
-        :old.cir_id,
-        :old.cir_municipio,
-        sysdate        
-        );
-end;
-/
+-- create trigger tg_hcir 
+-- before update or delete on CIRCUNSCRICOES
+-- for each row
+-- begin
+-- 	insert into H_CIRCUNSCRICOES values (
+--         :old.cir_id,
+--         :old.cir_municipio,
+--         sysdate        
+--         );
+-- end;
+-- /
 
-CREATE TABLE H_DELEGACIAS (
-    hdel_id                INTEGER,
-    hdel_delegacia_policia VARCHAR2(90),
-    hdel_datahora DATE,
+-- CREATE TABLE H_DELEGACIAS (
+--     hdel_id                INTEGER,
+--     hdel_delegacia_policia VARCHAR2(90),
+--     hdel_datahora DATE,
 
-    CONSTRAINT pk_hdel PRIMARY KEY (hdel_id, hdel_datahora)
-);
+--     CONSTRAINT pk_hdel PRIMARY KEY (hdel_id, hdel_datahora)
+-- );
 
-create trigger tg_hdel 
-before update or delete on DELEGACIAS
-for each row
-begin
-	insert into H_DELEGACIAS values (
-        :old.del_id,  
-        :old.del_delegacia_policia,
-        sysdate        
-        );
-end;
-/
+-- create trigger tg_hdel 
+-- before update or delete on DELEGACIAS
+-- for each row
+-- begin
+-- 	insert into H_DELEGACIAS values (
+--         :old.del_id,  
+--         :old.del_delegacia_policia,
+--         sysdate        
+--         );
+-- end;
+-- /
 
-CREATE TABLE H_UNIDADES_ADMINISTRATIVAS (
-    huna_id             INTEGER,
-    huna_seccional      VARCHAR2(26),
-    huna_datahora       DATE,
+-- CREATE TABLE H_UNIDADES_ADMINISTRATIVAS (
+--     huna_id             INTEGER,
+--     huna_seccional      VARCHAR2(26),
+--     huna_datahora       DATE,
 
-    CONSTRAINT pk_huna PRIMARY KEY (huna_id, huna_datahora)
-);
+--     CONSTRAINT pk_huna PRIMARY KEY (huna_id, huna_datahora)
+-- );
 
-create trigger tg_huna 
-before update or delete on UNIDADES_ADMINISTRATIVAS
-for each row
-begin
-	insert into H_UNIDADES_ADMINISTRATIVAS values (
-        :old.una_id,
-        :old.una_seccional,
-        sysdate        
-        );
-end;
-/
+-- create trigger tg_huna 
+-- before update or delete on UNIDADES_ADMINISTRATIVAS
+-- for each row
+-- begin
+-- 	insert into H_UNIDADES_ADMINISTRATIVAS values (
+--         :old.una_id,
+--         :old.una_seccional,
+--         sysdate        
+--         );
+-- end;
+-- /
 
-CREATE TABLE H_DEPARTAMENTOS (
-    hdep_id INTEGER,
-    hdep_departamento VARCHAR2(26),
-    hdep_datahora DATE,
+-- CREATE TABLE H_DEPARTAMENTOS (
+--     hdep_id INTEGER,
+--     hdep_departamento VARCHAR2(26),
+--     hdep_datahora DATE,
 
-    CONSTRAINT pk_hdep PRIMARY KEY (hdep_id, hdep_datahora)
-);
+--     CONSTRAINT pk_hdep PRIMARY KEY (hdep_id, hdep_datahora)
+-- );
 
-create trigger tg_hdep 
-before update or delete on DEPARTAMENTOS
-for each row
-begin
-	insert into H_DEPARTAMENTOS values (
-        :old.dep_id,
-        :old.dep_departamento,
-        sysdate        
-        );
-end;
-/
+-- create trigger tg_hdep 
+-- before update or delete on DEPARTAMENTOS
+-- for each row
+-- begin
+-- 	insert into H_DEPARTAMENTOS values (
+--         :old.dep_id,
+--         :old.dep_departamento,
+--         sysdate        
+--         );
+-- end;
+-- /
 
 CREATE TABLE H_LOCAIS (
     hloc_id                INTEGER,
@@ -181,45 +181,45 @@ begin
 end;
 /
 
-CREATE TABLE H_TIPO_LOCAL (
-    htip_id         INTEGER,
-    htip_desc_local VARCHAR2(26),
-    htip_datahora DATE,
+-- CREATE TABLE H_TIPO_LOCAL (
+--     htip_id         INTEGER,
+--     htip_desc_local VARCHAR2(26),
+--     htip_datahora DATE,
 
-    CONSTRAINT pk_htip PRIMARY KEY ( htip_id, htip_datahora )
-);
+--     CONSTRAINT pk_htip PRIMARY KEY ( htip_id, htip_datahora )
+-- );
 
-create trigger tg_htip 
-before update or delete on TIPO_LOCAL
-for each row
-begin
-	insert into H_TIPO_LOCAL values (
-        :old.tip_id,
-        :old.tip_desc_local,
-        sysdate        
-        );
-end;
-/
+-- create trigger tg_htip 
+-- before update or delete on TIPO_LOCAL
+-- for each row
+-- begin
+-- 	insert into H_TIPO_LOCAL values (
+--         :old.tip_id,
+--         :old.tip_desc_local,
+--         sysdate        
+--         );
+-- end;
+-- /
 
-CREATE TABLE H_DIVISOES_ESPECIALIZADAS (
-    hdiv_id                INTEGER,
-    hdiv_divisao      VARCHAR2(60),
-    hdiv_datahora DATE,
+-- CREATE TABLE H_DIVISOES_ESPECIALIZADAS (
+--     hdiv_id                INTEGER,
+--     hdiv_divisao      VARCHAR2(60),
+--     hdiv_datahora DATE,
 
-    CONSTRAINT pk_hdiv PRIMARY KEY ( hdiv_id, hdiv_datahora )
-);
+--     CONSTRAINT pk_hdiv PRIMARY KEY ( hdiv_id, hdiv_datahora )
+-- );
 
-create trigger tg_hdiv 
-before update or delete on DIVISOES_ESPECIALIZADAS
-for each row
-begin
-	insert into H_DIVISOES_ESPECIALIZADAS values (
-        :old.div_id,
-        :old.div_divisao,
-        sysdate        
-        );
-end;
-/
+-- create trigger tg_hdiv 
+-- before update or delete on DIVISOES_ESPECIALIZADAS
+-- for each row
+-- begin
+-- 	insert into H_DIVISOES_ESPECIALIZADAS values (
+--         :old.div_id,
+--         :old.div_divisao,
+--         sysdate        
+--         );
+-- end;
+-- /
 
 CREATE TABLE H_OCORRENCIAS (
     hocr_id                   INTEGER,
@@ -269,25 +269,25 @@ end;
 /
 
 
-CREATE TABLE H_UNIDADES_DELEGACIAS (
-    hund_una_id INTEGER,
-    hund_del_id INTEGER,
-    hund_datahora DATE,
+-- CREATE TABLE H_UNIDADES_DELEGACIAS (
+--     hund_una_id INTEGER,
+--     hund_del_id INTEGER,
+--     hund_datahora DATE,
 
-    CONSTRAINT hund_pk PRIMARY KEY ( hund_una_id, hund_del_id, hund_datahora )
-);
+--     CONSTRAINT hund_pk PRIMARY KEY ( hund_una_id, hund_del_id, hund_datahora )
+-- );
 
-create trigger tg_hund
-before update or delete on UNIDADES_DELEGACIAS
-for each row
-begin
-	insert into H_UNIDADES_DELEGACIAS values (
-        :old.und_una_id,
-        :old.und_del_id,
-        sysdate        
-        );
-end;
-/
+-- create trigger tg_hund
+-- before update or delete on UNIDADES_DELEGACIAS
+-- for each row
+-- begin
+-- 	insert into H_UNIDADES_DELEGACIAS values (
+--         :old.und_una_id,
+--         :old.und_del_id,
+--         sysdate        
+--         );
+-- end;
+-- /
 
 CREATE TABLE H_TIPOS_LOCAIS (
     htil_tip_id INTEGER,
