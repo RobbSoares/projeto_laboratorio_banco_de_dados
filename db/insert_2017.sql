@@ -10410,7 +10410,7 @@ INSERT INTO delegacias_especializadas values (582, 'DEL.POL.LARANJAL PAULISTA', 
 INSERT INTO delegacias_especializadas values (583, 'DEL.POL.BOM SUCESSO DE ITARARÉ', 120422); 
 INSERT INTO delegacias_especializadas values (584, 'DEL.POL.ITAPIRAPUÃ PAULISTA', 120424); 
 INSERT INTO delegacias_especializadas values (585, '01º D.P. ROSANA', 90342); 
-INSERT INTO delegacias_especializadas values (586, 'DEL.POL.SANTO ANASTACIO', 90307); 
+INSERT INTO delegacias_especializadas values dele(586, 'DEL.POL.SANTO ANASTACIO', 90307); 
 INSERT INTO delegacias_especializadas values (587, 'DEL.POL.SANTA MARIA DA SERRA', 70525); 
 INSERT INTO delegacias_especializadas values (588, 'DDM SANTANA DO PARNAIBA', 80524); 
 INSERT INTO delegacias_especializadas values (589, 'DDM SUZANO', 30325); 

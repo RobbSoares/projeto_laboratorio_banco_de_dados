@@ -98,7 +98,7 @@ def gera_tabela_relacionamento_delegacias_departamentos():
 
 def gera_tabela_relacionamento_delegacias_especializadas_homicidios():
     homicidios = []
-    delegacia_especializadas_especializadas = []
+    delegacia_especializadas = []
 
     with open('output_2018.json', encoding='utf-8') as fh:
         df = pd.read_json(fh)
@@ -109,7 +109,9 @@ def gera_tabela_relacionamento_delegacias_especializadas_homicidios():
 
     with open('tabelas/atualizadas/delegacias_especializadas/atualizacao.sql', encoding='utf-8') as fh:
         for line in fh:
-            delegacia_especializadas_especializadas.append(line)
+            delegacia_especializadas.append(line)
+
+    print(len(delegacia_especializadas))
 
     lines_already_seen = []
     homicidios_df = df[['DATA_FATO', 'HORA_FATO', 'MÊS ESTATISTICA', 'DP_ELABORACAO', 'LATITUDE',
@@ -122,14 +124,27 @@ def gera_tabela_relacionamento_delegacias_especializadas_homicidios():
     for homicidio in homicidios:
         homicidios_segmentadas.append(homicidio.split("(")[1].split(")")[0].split(", "))
 
-    delegacia_especializadas_especializadas_segmentadas = []
-    for delegacia_especializada in delegacia_especializadas_especializadas:
-        delegacia_especializadas_especializadas_segmentadas.append(
-            delegacia_especializada.split("(")[1].split(")")[0].split(", "))
+    print(len(homicidios_segmentadas))
+
+    delegacia_especializadas_segmentadas = []
+    for delegacia_especializada in delegacia_especializadas:
+        if "(" in delegacia_especializada and ")" in delegacia_especializada:
+            
+            split_result = delegacia_especializada.split("(")[1].split(")")[0].split(", ")
+            if len(split_result) > 0:
+                delegacia_especializadas_segmentadas.append(split_result)
+            else:
+                print(delegacia_especializada)
+                print(f"A divisão da string {delegacia_especializada} resultou em uma lista vazia.")
+        else:
+            print(f"A string {delegacia_especializada} não contém os caracteres esperados.")
+        
+
+    print(len(delegacia_especializadas_segmentadas))
 
     inserts = []
     for line in lines_already_seen:
-        for delegacia_especializada in delegacia_especializadas_especializadas_segmentadas:
+        for delegacia_especializada in delegacia_especializadas_segmentadas:
             if delegacia_especializada[1].strip("'") == str(line[3]):
                 for homicidio in homicidios_segmentadas:
                     if homicidio[5].strip("'") == str(line[0]) and homicidio[6].strip("'") == str(line[1]) and \

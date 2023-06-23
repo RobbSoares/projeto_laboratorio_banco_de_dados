@@ -171,24 +171,6 @@ CREATE TABLE DELEGACIAS_ESPECIALIZADAS (
     CONSTRAINT ck_des_numero_delegacia CHECK (des_numero_delegacia is not null)
 );
 
-CREATE TABLE DELEGACIAS_ESPECIALIZADAS_MUNICIPIOS (
-    dem_des_id INTEGER,
-    dem_mun_id INTEGER,
-
-    CONSTRAINT pk_mun_des PRIMARY KEY (dem_des_id, dem_mun_id),
-    CONSTRAINT fk_dem_des FOREIGN KEY (dem_des_id) REFERENCES delegacias_especializadas (des_id),
-    CONSTRAINT fk_dem_mun FOREIGN KEY (dem_mun_id) REFERENCES municipios (mun_id)
-);
-
-
-CREATE TABLE MUNICIPIOS (
-    mun_id                INTEGER,
-    mun_municipio      VARCHAR2(60),
-
-    CONSTRAINT pk_mun PRIMARY KEY ( mun_id ),
-    CONSTRAINT ck_mun_municipio CHECK (mun_municipio is not null)
-);
-
 CREATE TABLE DELEGACIAS_ESPECIALIZADAS_HOMICIDIOS (
     deh_des_id INTEGER,
     deh_hom_id INTEGER,

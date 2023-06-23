@@ -31,9 +31,9 @@ def insercao_valores_2018():
     # insert_de_valores.create_circunscricoes(True, '2018')
     # insert_de_valores.create_unidades_administrativas(True, '2018')
     # insert_de_valores.create_departamentos(True, '2018')
-    insert_de_valores.create_tipo_local(True, '2018')
-    # insert_de_valores.create_divisoes_especializadas(True, '2018')
-    # insert_de_valores.create_delegacias_especializadas(True, '2018')
+    #insert_de_valores.create_tipo_local(True, '2018')
+    insert_de_valores.create_divisoes_especializadas(True, '2018')
+    #insert_de_valores.create_delegacias_especializadas(True, '2018')
     # insert_de_valores.create_ocorrencias(True, '2018')
 
 def insercao_valores_historico():
@@ -51,7 +51,7 @@ def insercao_valores_relacionamento():
     # tabelas_relacionamentos.gera_tabela_relacionamento_divisoes_delegacias_especializadas()
     # tabelas_relacionamentos.gera_tabela_relacionamento_delegacias_homicidios()
     tabelas_relacionamentos.gera_tabela_relacionamento_delegacias_ocorrencias()
-    #tabelas_relacionamentos.gera_tabela_relacionamento_unidades_delegacias()
+    # tabelas_relacionamentos.gera_tabela_relacionamento_unidades_delegacias()
     
     
 
@@ -61,5 +61,5 @@ def insercao_valores_relacionamento_historico():
     relacionamento_historico.relacionamento_divisoes_delegacias_especializadas()
 
 # insercao_valores_2017()
-# insercao_valores_2018()
+#insercao_valores_2018()
 insercao_valores_relacionamento()
