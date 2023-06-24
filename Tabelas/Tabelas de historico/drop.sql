@@ -23,33 +23,6 @@ drop trigger tg_hmun;
 drop table H_OCORRENCIAS;
 drop trigger tg_hocr; 
 
-
-DELETE FROM DELEGACIAS_DEPARTAMENTOS;
-DELETE FROM UNIDADES_DELEGACIAS;
-DELETE FROM DELEGACIAS_ESPECIALIZADAS_MUNICIPIOS;
-
-DELETE FROM DELEGACIAS;
-
-
-
-
-
-DELETE FROM HOMICIDIOS; -- foi
-DELETE FROM DELEGACIAS_OCORRENCIAS;
-DELETE FROM DELEGACIAS_HOMICIDIOS;
-DELETE FROM DELEGACIAS_CIRCUNSCRICOES;
-DELETE FROM LOCAIS_HOMICIDIOS; 
-DELETE FROM DIVISOES_DELEGACIAS_ESPECIALIZADAS;
-DELETE FROM DELEGACIAS_ESPECIALIZADAS_HOMICIDIOS;
-DELETE FROM PESSOAS; -- foi
-DELETE FROM TIPO_LOCAL; -- foi
-DELETE FROM TIPOS_LOCAIS; -- foi
-DELETE FROM LOCAIS; -- foi
-DELETE FROM OCORRENCIAS; -- foi
-
-
-
-
 drop table h_delegacias_circunscricoes;
 drop table h_delegacias_departamentos;
 drop table h_delegacias_especializadas_homicidios;
@@ -74,7 +47,6 @@ drop table h_pessoas;
 drop table h_tipo_local;
 drop table h_homicidios;
 
-
 drop trigger tg_hdho;
 drop trigger tg_hdec;
 drop trigger tg_hund;
@@ -97,3 +69,43 @@ drop sequence TG_SQ_PES;
 drop sequence TG_SQ_SQ_OCR; 
 drop sequence TG_SQ_TIP_LOC; 
 drop sequence TG_SQ_UNA;
+
+
+
+drop table delegacias_circunscricoes;
+drop table delegacias_departamentos;
+drop table delegacias_especializadas_homicidios;
+drop table delegacias_especializadas_municipios;
+drop table delegacias_homicidios;
+drop table delegacias_ocorrencias;
+drop table divisoes_delegacias_especializadas;
+drop table divisoes_especializadas;
+drop table locais_homicidios;
+drop table unidades_delegacias;
+drop table tipos_locais;
+drop table delegacias_especializadas;
+drop table departamentos;
+drop table municipios;
+drop table tipo_local;
+drop table unidades_administrativas;
+drop table ocorrencias;
+drop table delegacias;
+drop table circunscricoes;
+drop table locais;
+drop table tipo_local;
+drop table homicidios;
+drop table pessoas;
+
+drop sequence sq_cir;
+drop sequence sq_del;
+drop sequence sq_dep;
+drop sequence sq_div;
+drop sequence sq_mun;
+drop sequence sq_tip;
+drop sequence sq_una;
+drop sequence sq_des;
+drop sequence sq_elb;
+drop sequence sq_hom;
+drop sequence sq_loc;
+drop sequence sq_ocr;
+drop sequence sq_pes;

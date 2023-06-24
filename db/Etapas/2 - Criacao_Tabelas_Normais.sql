@@ -1,3 +1,4 @@
+
 CREATE TABLE PESSOAS (
     pes_id            INTEGER,
     pes_tipo          VARCHAR2(26),
@@ -12,7 +13,6 @@ CREATE TABLE PESSOAS (
     CONSTRAINT ck_pes_tipo CHECK (pes_tipo is not null),
     CONSTRAINT ck_pes_sexo CHECK (pes_sexo is not null)
 );
-
 
 CREATE TABLE HOMICIDIOS (
     hom_id               INTEGER,
@@ -34,6 +34,8 @@ CREATE TABLE HOMICIDIOS (
     CONSTRAINT ck_hom_hora_fato CHECK (hom_hora_fato is not null),
     CONSTRAINT ck_hom_natureza_apurada CHECK (hom_natureza_apurada is not null)
 );
+
+
 
 CREATE TABLE CIRCUNSCRICOES (
     cir_id           INTEGER,
@@ -152,15 +154,6 @@ CREATE TABLE DIVISOES_ESPECIALIZADAS (
     CONSTRAINT ck_div_divisao CHECK (div_divisao is not null)
 );
 
-CREATE TABLE DIVISOES_DELEGACIAS_ESPECIALIZADAS (
-    dde_des_id INTEGER,
-    dde_div_id INTEGER,
-
-    CONSTRAINT pk_div_des PRIMARY KEY (dde_des_id, dde_div_id),
-    CONSTRAINT fk_dde_des FOREIGN KEY (dde_des_id) REFERENCES delegacias_especializadas (des_id),
-    CONSTRAINT fk_dde_div FOREIGN KEY (dde_div_id) REFERENCES divisoes_especializadas (div_id)
-);
-
 CREATE TABLE DELEGACIAS_ESPECIALIZADAS (
     des_id                INTEGER,
     des_delegacia_especializada      VARCHAR2(60),
@@ -171,14 +164,16 @@ CREATE TABLE DELEGACIAS_ESPECIALIZADAS (
     CONSTRAINT ck_des_numero_delegacia CHECK (des_numero_delegacia is not null)
 );
 
-CREATE TABLE DELEGACIAS_ESPECIALIZADAS_MUNICIPIOS (
-    dem_des_id INTEGER,
-    dem_mun_id INTEGER,
+CREATE TABLE DIVISOES_DELEGACIAS_ESPECIALIZADAS (
+    dde_des_id INTEGER,
+    dde_div_id INTEGER,
 
-    CONSTRAINT pk_mun_des PRIMARY KEY (dem_des_id, dem_mun_id),
-    CONSTRAINT fk_dem_des FOREIGN KEY (dem_des_id) REFERENCES delegacias_especializadas (des_id),
-    CONSTRAINT fk_dem_mun FOREIGN KEY (dem_mun_id) REFERENCES municipios (mun_id)
+    CONSTRAINT pk_div_des PRIMARY KEY (dde_des_id, dde_div_id),
+    CONSTRAINT fk_dde_des FOREIGN KEY (dde_des_id) REFERENCES delegacias_especializadas (des_id),
+    CONSTRAINT fk_dde_div FOREIGN KEY (dde_div_id) REFERENCES divisoes_especializadas (div_id)
 );
+
+
 
 CREATE TABLE DELEGACIAS_ESPECIALIZADAS_HOMICIDIOS (
     deh_des_id INTEGER,

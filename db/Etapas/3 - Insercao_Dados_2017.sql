@@ -11,7 +11,6 @@ create sequence sq_una nocache start with 1;
 create sequence sq_des nocache start with 1;
 create sequence sq_div nocache start with 1;
 create sequence sq_loc nocache start with 1;
-create sequence sq_mun nocache start with 1;
 create sequence sq_pes nocache start with 1;
 create sequence sq_ocr nocache start with 1;
 create sequence sq_tip nocache start with 1;
@@ -72,15 +71,6 @@ begin
     :new.div_id := sq_div.nextval;
 end;
 /
-
-create trigger tg_sq_mun
-before insert on municipios
-for each row
-begin
-    :new.mun_id := sq_mun.nextval;
-end;
-/
-
 
 create trigger tg_sq_loc
 before insert on locais
@@ -177,14 +167,6 @@ COMMENT ON COLUMN DELEGACIAS_ESPECIALIZADAS_HOMICIDIOS.deh_des_id   IS
 COMMENT ON COLUMN DELEGACIAS_ESPECIALIZADAS_HOMICIDIOS.deh_hom_id   IS
     'Forma a PK da relação.';
 
--- Tabela DELEGACIAS_ESPECIALIZADAS_MUNICIPIOS
-
-COMMENT ON COLUMN DELEGACIAS_ESPECIALIZADAS_MUNICIPIOS.dem_des_id   IS
-    'Forma a PK da relação.';
-
-COMMENT ON COLUMN DELEGACIAS_ESPECIALIZADAS_MUNICIPIOS.dem_mun_id   IS
-    'Forma a PK da relação.';
-
 
 -- Tabela DELEGACIAS_HOMICIDIOS
 
@@ -274,16 +256,6 @@ COMMENT ON COLUMN LOCAIS_HOMICIDIOS.lho_hom_id    IS
 COMMENT ON COLUMN LOCAIS_HOMICIDIOS.lho_loc_id      IS
     'Forma a PK da relação.';
 
-
--- Tabela MUNICIPIOS
-
-COMMENT ON COLUMN MUNICIPIOS.mun_id    IS
-    'Esta é a PK';
-
-COMMENT ON COLUMN MUNICIPIOS.mun_municipio  IS
-    'Esta coluna armazena o nome do municipio.';
-
-
 -- Tabela OCORRENCIAS
 
 COMMENT ON COLUMN OCORRENCIAS.ocr_id     IS
@@ -348,6 +320,7 @@ COMMENT ON COLUMN UNIDADES_DELEGACIAS.und_del_id   IS
 
 
 -- PESSOAS
+ALTER SESSION SET nls_date_format='dd-mm-yyyy';
 
 INSERT INTO pessoas values (1, 'Vítima', 'Masculino', NULL, NULL, 'Parda', NULL); 
 INSERT INTO pessoas values (2, 'Vítima', 'Masculino', NULL, NULL, 'Preta', NULL); 
