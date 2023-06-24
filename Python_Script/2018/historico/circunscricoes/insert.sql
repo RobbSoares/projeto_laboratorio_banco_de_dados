@@ -82,5 +82,5 @@ INSERT INTO circunscricoes values (454, 'Rincão');
 INSERT INTO circunscricoes values (455, 'Alvinlândia'); 
 INSERT INTO circunscricoes values (456, 'Joanópolis'); 
 INSERT INTO circunscricoes values (457, 'Morungaba'); 
-INSERT INTO circunscricoes values (458, 'Estrela D'Oeste'); 
+INSERT INTO circunscricoes values (458, 'Estrela DOeste'); 
 INSERT INTO circunscricoes values (459, 'Ribeira'); 

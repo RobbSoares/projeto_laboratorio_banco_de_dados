@@ -38,6 +38,7 @@ def armazena_dados_sem_repeticao(dicionario, path, is_duplicado=True):
     # Criar as strings de insert dinamicamente
     results = []
     tb_id = 1
+    print(len(novo_dicionario))
     for chave, valor in novo_dicionario.items():
         valores_str = []
         for v in valor:
